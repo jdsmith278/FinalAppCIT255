@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Console = Colorful.Console;
+
 
 namespace Application
 {
@@ -36,6 +38,7 @@ namespace Application
         #region METHODS
         public static void DisplayTitleScreen()
         {
+            Console.SetWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
             Console.WriteLine("                     ");
             Console.WriteLine("                     ");
             Console.WriteLine("                     ");
@@ -50,7 +53,11 @@ namespace Application
             Console.WriteLine("                     ");
             Console.WriteLine("                     ");
             Console.WriteLine("                     ");
-            Console.WriteLine("                                                     Great People");
+            Console.WriteLine("                     ");
+            Console.WriteLine("                     ");
+            Console.WriteLine("                     ");
+            Console.WriteLine("                     ");
+            Console.WriteLine("                                                      -|Great People|-  ", System.Drawing.Color.DarkGoldenrod);
             Console.WriteLine("                     ");
             Console.WriteLine("                     ");
             Console.WriteLine("                     ");
@@ -65,6 +72,12 @@ namespace Application
             Console.WriteLine("                     ");
             Console.WriteLine("                     ");
             Console.WriteLine("                     ");
+            Console.WriteLine("                     ");
+            Console.WriteLine("                     ");
+            Console.WriteLine("                     ");
+            Console.WriteLine("                     ");
+           
+
             DisplayContinuePromptInvisible();
 
             //System.Threading.Thread.Sleep(3000);
@@ -89,10 +102,9 @@ namespace Application
 
             AppEnum.MenuOptions userMenuOption = AppEnum.MenuOptions.None;
             Console.WriteLine();
-            Console.WriteLine("                              Enter a menu option.");
+            Console.WriteLine("                                                     Enter a menu option.", System.Drawing.Color.CadetBlue);
             Console.WriteLine();
-            Console.WriteLine("*******************************************************************************");
-            Console.WriteLine();
+            Console.WriteLine("************************************************************************************************************************", System.Drawing.Color.CadetBlue);
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
@@ -100,29 +112,30 @@ namespace Application
             Console.WriteLine();
 
 
-            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.ForegroundColor = System.Drawing.Color.DarkKhaki;
             Console.WriteLine(
-                "              1.            Display All Great People" + Environment.NewLine +
+                "                                       1.            Display All Great People" + Environment.NewLine +
                 "" + Environment.NewLine +
-                "              2.            Display Great Person Detail" + Environment.NewLine +
+                "                                       2.            Display Great Person Detail" + Environment.NewLine +
                 "" + Environment.NewLine +
-                "              3.            Add a Great Person" + Environment.NewLine +
+                "                                       3.            Add a Great Person" + Environment.NewLine +
                 "" + Environment.NewLine +
-                "              4.            Delete a Great Person" + Environment.NewLine +
+                "                                       4.            Delete a Great Person" + Environment.NewLine +
                 "" + Environment.NewLine +
-                "              5.            Update a Great Person" + Environment.NewLine +
+                "                                       5.            Update a Great Person" + Environment.NewLine +
                 "" + Environment.NewLine +
-                "              6.            Sort By Occupation" + Environment.NewLine +
-                "" + Environment.NewLine +
-                "              7.            Query By");
+                "                                       6.            Sort By Occupation");
+                
+                //"                                       7.            Query By");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("                       Press 'E' to exit the application.");
+            Console.ForegroundColor = System.Drawing.Color.MediumVioletRed;
+            Console.WriteLine("                                             Press 'E' to exit the application.");
             Console.ResetColor();
 
             Console.WriteLine("");
@@ -172,9 +185,9 @@ namespace Application
             StringBuilder columnHeader = new StringBuilder();
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("                              The Great People");
+            Console.WriteLine("                                                      -|The Great People|-", System.Drawing.Color.DarkGoldenrod);
             Console.WriteLine();
-            Console.WriteLine("*******************************************************************************");
+            Console.WriteLine("************************************************************************************************************************", System.Drawing.Color.CadetBlue);
 
             Console.WriteLine();
             Console.WriteLine();
@@ -188,8 +201,8 @@ namespace Application
             foreach (GreatPeople greatPerson in greatPeople)  /// uses greatPerson instead
             {
                 StringBuilder greatPersonInfo = new StringBuilder();
-                Console.ForegroundColor = ConsoleColor.White;
-                greatPersonInfo.Append(greatPerson.ID.ToString().PadRight(8).PadLeft(35));
+                Console.ForegroundColor = System.Drawing.Color.DarkKhaki;
+                greatPersonInfo.Append(greatPerson.ID.ToString().PadRight(8).PadLeft(57));
                 Console.WriteLine();
                 greatPersonInfo.Append(greatPerson.Name.PadRight(25));
 
@@ -207,37 +220,46 @@ namespace Application
             GreatPeople greatPeople = new GreatPeople();
 
             Console.Clear();
-
+            Console.ResetColor();
+            Console.ForegroundColor = System.Drawing.Color.CadetBlue;
             Console.WriteLine(""); ;
-            Console.WriteLine("  Add A Great Person");
-            Console.WriteLine("");
-
-            Console.WriteLine("  Enter the Great Person ID: ");
+            Console.WriteLine("                                                     Add A Great Person");
+            Console.WriteLine();
+            Console.WriteLine("************************************************************************************************************************");
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
+            Console.Write("                                                 Enter the Great Person ID: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepPink;
             greatPeople.ID = ConsoleUtil.ValidateIntegerResponse("Please enter the Great Person ID: ", Console.ReadLine());
-            Console.WriteLine("");
 
-            Console.WriteLine("  Enter the Great Persons name: ");
+            Console.WriteLine("");
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
+            Console.Write("                                                 Enter the Great Persons name: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepPink;
             greatPeople.Name = Console.ReadLine();
             Console.WriteLine("");
-
-            Console.WriteLine("  Enter what they are known for: ");
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
+            Console.Write("                                                 Enter what they are known for: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepPink;
             greatPeople.KnownFor = Console.ReadLine();
             Console.WriteLine("");
-
-            Console.WriteLine("  Enter the occupation: ");
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
+            Console.Write("                                                 Enter the occupation: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepPink;
             greatPeople.Occupation = Console.ReadLine();
             Console.WriteLine("");
-
-            Console.WriteLine("  Enter the cause of death: ");
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
+            Console.Write("                                                 Enter the cause of death: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepPink;
             greatPeople.NetWorth = Console.ReadLine();
             Console.WriteLine("");
-
-            Console.WriteLine("  Enter the year of birth: ");
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
+            Console.Write("                                                 Enter the year of birth: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepPink;
             greatPeople.BirthYear = Console.ReadLine();
             Console.WriteLine("");
-
-            Console.WriteLine("  Enter a description: ");
-            greatPeople.Description = Console.ReadLine();
+            //Console.ForegroundColor = System.Drawing.Color.DimGray; //Description doesnt work atm
+            //Console.WriteLine("  Enter a description: ");
+            //greatPeople.Description = Console.ReadLine();
             Console.WriteLine("");
 
             return greatPeople;
@@ -248,13 +270,19 @@ namespace Application
             string userResponse = "";
 
             DisplayReset();
+            Console.ForegroundColor = System.Drawing.Color.CadetBlue;
+            DisplayMessage("");
+            Console.WriteLine("                                                     Edit a Great Person");
+            Console.WriteLine();
+            Console.WriteLine("************************************************************************************************************************");
 
             DisplayMessage("");
-            Console.WriteLine(ConsoleUtil.Center("Edit A Great Person ", WINDOW_WIDTH));
-            DisplayMessage("");
-
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
             DisplayMessage(String.Format("Current Name: {0}", greatPeople.Name));
-            DisplayPromptMessage("Enter a new name or just press Enter to keep the current name: ");
+            Console.ForegroundColor = System.Drawing.Color.ForestGreen;
+            DisplayPromptMessage("                                  Enter a new name or just press Enter to keep the current name: ");
+            Console.ResetColor();
+            Console.ForegroundColor = System.Drawing.Color.DeepSkyBlue;
             userResponse = Console.ReadLine();
             if (userResponse != "")
             {
@@ -262,8 +290,9 @@ namespace Application
             }
 
             DisplayMessage("");
-
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
             DisplayMessage(String.Format("Reknowned Work: {0}", greatPeople.KnownFor));
+            Console.ForegroundColor = System.Drawing.Color.ForestGreen;
             DisplayPromptMessage("Enter a new Reknowned Work or just press Enter to keep the current Reknowned Work: ");
             userResponse = Console.ReadLine();
             if (userResponse != "")
@@ -272,9 +301,10 @@ namespace Application
             }
 
             DisplayMessage("");
-
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
             DisplayMessage(String.Format("Occupation: {0}", greatPeople.Occupation));
-            DisplayPromptMessage("Enter a new occupation or just press Enter to keep the current type: ");
+            Console.ForegroundColor = System.Drawing.Color.ForestGreen;
+            DisplayPromptMessage("Enter a new occupation or just press Enter to keep the current occupation: ");
             userResponse = Console.ReadLine();
             if (userResponse != "")
             {
@@ -282,8 +312,9 @@ namespace Application
             }
 
             DisplayMessage("");
-
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
             DisplayMessage(String.Format("Current cause of death: {0}", greatPeople.NetWorth));
+            Console.ForegroundColor = System.Drawing.Color.ForestGreen;
             DisplayPromptMessage("Enter a new cause of death or just press Enter to keep the current cause of death: ");
             userResponse = Console.ReadLine();
             if (userResponse != "")
@@ -292,8 +323,9 @@ namespace Application
             }
 
             DisplayMessage("");
-
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
             DisplayMessage(String.Format("Current year of birth: {0}", greatPeople.BirthYear));
+            Console.ForegroundColor = System.Drawing.Color.ForestGreen;
             DisplayPromptMessage("Enter a new year of birth or just press Enter to keep the current year: ");
             userResponse = Console.ReadLine();
             if (userResponse != "")
@@ -302,9 +334,10 @@ namespace Application
             }
 
             DisplayMessage("");
-
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
 
             DisplayMessage(String.Format("Description: {0}", greatPeople.Description));
+            Console.ForegroundColor = System.Drawing.Color.ForestGreen;
             DisplayPromptMessage("Enter a new description or just press Enter to keep the current description: ");
             userResponse = Console.ReadLine();
             if (userResponse != "")
@@ -324,17 +357,19 @@ namespace Application
         /// </summary>
         public static void DisplayReset()
         {
-            Console.SetWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+            //Console.SetWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
             Console.Clear();
             Console.ResetColor();
 
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.ForegroundColor = System.Drawing.Color.DarkGoldenrod;
+            //Console.BackgroundColor = System.Drawing.Color.BlueViolet;
 
-            Console.WriteLine(ConsoleUtil.FillStringWithSpaces(WINDOW_WIDTH));
-            Console.WriteLine(ConsoleUtil.Center("Great People", WINDOW_WIDTH));
-            Console.WriteLine(ConsoleUtil.FillStringWithSpaces(WINDOW_WIDTH));
+            //Console.WriteLine(ConsoleUtil.FillStringWithSpaces(120));
+            Console.WriteLine("                                                      -|Great People|-");
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            //Console.WriteLine(ConsoleUtil.FillStringWithSpaces(119));
 
             Console.ResetColor();
             Console.WriteLine();
@@ -347,10 +382,11 @@ namespace Application
         {
             int greatPersonID = -1;
 
-            DisplayMessage("");
-            DisplayPromptMessage("Enter the Great Persons ID: ");
-
-            greatPersonID = ConsoleUtil.ValidateIntegerResponse("Please enter the Great Persons ID: ", Console.ReadLine());
+            DisplayMessage(" ");
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
+            DisplayPromptMessage("Enter the Great Persons ID:  ");
+            Console.ForegroundColor = System.Drawing.Color.DeepPink;
+            greatPersonID = ConsoleUtil.ValidateIntegerResponse("Please enter the Great Persons ID:  ", Console.ReadLine());
 
             return greatPersonID;
         }
@@ -423,24 +459,26 @@ namespace Application
 
         public static void DisplayGreatPerson(GreatPeople greatPeople)
         {
+
             DisplayReset();
 
-            DisplayMessage("");
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("ID:               {0}", greatPeople.ID.ToString());
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.WriteLine("Details on the Great {1} {0}.", greatPeople.Name.ToString(), greatPeople.Occupation.ToString(), WINDOW_WIDTH);
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.WriteLine("");
             Console.ResetColor();
             DisplayMessage("");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = System.Drawing.Color.DarkSlateGray;
+            Console.WriteLine("ID:               {0}", greatPeople.ID.ToString());
+            Console.ForegroundColor = System.Drawing.Color.Gold;
+            Console.WriteLine("Details on the Great {1} {0}.", greatPeople.Name.ToString(), greatPeople.Occupation.ToString(), WINDOW_WIDTH);
+            Console.ForegroundColor = System.Drawing.Color.Firebrick;
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.ResetColor();
+            DisplayMessage("");
+            Console.ForegroundColor = System.Drawing.Color.ForestGreen;
             //DisplayMessage(String.Format("ID:               {0}", greatPeople.ID.ToString()));
             //Console.WriteLine();
             //DisplayMessage(String.Format("Great Person:     {0}", greatPeople.Name));
             //DisplayMessage("");
 
-            DisplayMessage(String.Format("Name:             {0}", greatPeople.Name.ToString()));
+            DisplayMessage(String.Format("Name:             {0}", greatPeople.Name.ToString(), Console.ForegroundColor = System.Drawing.Color.DarkTurquoise));
             Console.WriteLine();
             DisplayMessage(String.Format("Occupation:       {0}", greatPeople.Occupation.ToString()));
             Console.WriteLine();
@@ -450,7 +488,9 @@ namespace Application
             Console.WriteLine();
             DisplayMessage(String.Format("Cause of death:   {0}", greatPeople.NetWorth.ToString()));
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.ForegroundColor = System.Drawing.Color.SpringGreen;
             DisplayMessage(String.Format("Description:      {0}", greatPeople.Description));
 
             DisplayMessage("");

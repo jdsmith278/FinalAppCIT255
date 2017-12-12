@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Console = Colorful.Console;
 
 namespace Application
 {
@@ -99,12 +100,32 @@ namespace Application
             {
                 ConsoleView.DisplayReset();
 
-                ConsoleView.DisplayMessage("");
-                ConsoleView.DisplayMessage("It appears you have not entered a valid integer.");
+                ConsoleView.DisplayMessage(" ");
+                Console.ForegroundColor = System.Drawing.Color.OrangeRed;
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                System.Console.WriteLine();
+                
+                ConsoleView.DisplayMessage("*It appears you have not entered a valid integer.*");
+                System.Console.WriteLine();
+                Console.ForegroundColor = System.Drawing.Color.DarkOrange;
 
-                ConsoleView.DisplayMessage("");
+                ConsoleView.DisplayMessage(" ");
                 ConsoleView.DisplayPromptMessage(promptMessage);
                 userResponse = Console.ReadLine();
+                
             }
 
 
