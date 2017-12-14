@@ -76,7 +76,8 @@ namespace Application
             Console.WriteLine("                     ");
             Console.WriteLine("                     ");
             Console.WriteLine("                     ");
-           
+
+
 
             DisplayContinuePromptInvisible();
 
@@ -125,9 +126,9 @@ namespace Application
                 "" + Environment.NewLine +
                 "                                       5.            Update a Great Person" + Environment.NewLine +
                 "" + Environment.NewLine +
-                "                                       6.            Sort By Occupation");
-                
-                //"                                       7.            Query By");
+                "                                       6.            Sort By Year Born");
+
+            //"                                       7.            Query By");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
@@ -160,10 +161,10 @@ namespace Application
                     userMenuOption = AppEnum.MenuOptions.UpdateGreatPerson;
                     break;
                 case '6':
-                    userMenuOption = AppEnum.MenuOptions.QueryBy;
+                    userMenuOption = AppEnum.MenuOptions.SortByDateBorn;
                     break;
                 case '7':
-                    userMenuOption = AppEnum.MenuOptions.SortBy;
+                    userMenuOption = AppEnum.MenuOptions.QueryBy;
                     break;
                 case 'e':
                 case 'E':
@@ -185,7 +186,7 @@ namespace Application
             StringBuilder columnHeader = new StringBuilder();
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("                                                      -|The Great People|-", System.Drawing.Color.DarkGoldenrod);
+            Console.WriteLine("                                                    -|The Great People|-", System.Drawing.Color.DarkGoldenrod);
             Console.WriteLine();
             Console.WriteLine("************************************************************************************************************************", System.Drawing.Color.CadetBlue);
 
@@ -255,7 +256,7 @@ namespace Application
             Console.ForegroundColor = System.Drawing.Color.LawnGreen;
             Console.Write("                                                 Enter the year of birth: ");
             Console.ForegroundColor = System.Drawing.Color.DeepPink;
-            greatPeople.BirthYear = Console.ReadLine();
+            greatPeople.BirthYear =  Console.ReadLine();
             Console.WriteLine("");
             //Console.ForegroundColor = System.Drawing.Color.DimGray; //Description doesnt work atm
             //Console.WriteLine("  Enter a description: ");
@@ -264,7 +265,25 @@ namespace Application
 
             return greatPeople;
         }
+        public static int ValidateIntegerResponse(string promptMessage, string userResponse)
+        {
+            int userResponseInteger = 0;
 
+            while (!(int.TryParse(userResponse, out userResponseInteger)))
+            {
+                ConsoleView.DisplayReset();
+
+                ConsoleView.DisplayMessage("");
+                ConsoleView.DisplayMessage("It appears you have not entered a valid integer.");
+
+                ConsoleView.DisplayMessage("");
+                ConsoleView.DisplayPromptMessage(promptMessage);
+                userResponse = Console.ReadLine();
+            }
+
+
+            return userResponseInteger;
+        }
         public static GreatPeople UpdateGreatPerson(GreatPeople greatPeople)
         {
             string userResponse = "";
@@ -294,6 +313,7 @@ namespace Application
             DisplayMessage(String.Format("Reknowned Work: {0}", greatPeople.KnownFor));
             Console.ForegroundColor = System.Drawing.Color.ForestGreen;
             DisplayPromptMessage("Enter a new Reknowned Work or just press Enter to keep the current Reknowned Work: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepSkyBlue;
             userResponse = Console.ReadLine();
             if (userResponse != "")
             {
@@ -305,6 +325,7 @@ namespace Application
             DisplayMessage(String.Format("Occupation: {0}", greatPeople.Occupation));
             Console.ForegroundColor = System.Drawing.Color.ForestGreen;
             DisplayPromptMessage("Enter a new occupation or just press Enter to keep the current occupation: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepSkyBlue;
             userResponse = Console.ReadLine();
             if (userResponse != "")
             {
@@ -316,6 +337,7 @@ namespace Application
             DisplayMessage(String.Format("Current cause of death: {0}", greatPeople.NetWorth));
             Console.ForegroundColor = System.Drawing.Color.ForestGreen;
             DisplayPromptMessage("Enter a new cause of death or just press Enter to keep the current cause of death: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepSkyBlue;
             userResponse = Console.ReadLine();
             if (userResponse != "")
             {
@@ -327,6 +349,7 @@ namespace Application
             DisplayMessage(String.Format("Current year of birth: {0}", greatPeople.BirthYear));
             Console.ForegroundColor = System.Drawing.Color.ForestGreen;
             DisplayPromptMessage("Enter a new year of birth or just press Enter to keep the current year: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepSkyBlue;
             userResponse = Console.ReadLine();
             if (userResponse != "")
             {
@@ -339,6 +362,7 @@ namespace Application
             DisplayMessage(String.Format("Description: {0}", greatPeople.Description));
             Console.ForegroundColor = System.Drawing.Color.ForestGreen;
             DisplayPromptMessage("Enter a new description or just press Enter to keep the current description: ");
+            Console.ForegroundColor = System.Drawing.Color.DeepSkyBlue;
             userResponse = Console.ReadLine();
             if (userResponse != "")
             {
@@ -459,20 +483,22 @@ namespace Application
 
         public static void DisplayGreatPerson(GreatPeople greatPeople)
         {
-
+            Console.ResetColor();
             DisplayReset();
 
-            Console.ResetColor();
+
             DisplayMessage("");
-            Console.ForegroundColor = System.Drawing.Color.DarkSlateGray;
+            //Console.ForegroundColor = System.Drawing.Color.DarkSlateGray;
             Console.WriteLine("ID:               {0}", greatPeople.ID.ToString());
+            Console.ResetColor();
             Console.ForegroundColor = System.Drawing.Color.Gold;
             Console.WriteLine("Details on the Great {1} {0}.", greatPeople.Name.ToString(), greatPeople.Occupation.ToString(), WINDOW_WIDTH);
             Console.ForegroundColor = System.Drawing.Color.Firebrick;
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.ResetColor();
+
             DisplayMessage("");
-            Console.ForegroundColor = System.Drawing.Color.ForestGreen;
+
+
             //DisplayMessage(String.Format("ID:               {0}", greatPeople.ID.ToString()));
             //Console.WriteLine();
             //DisplayMessage(String.Format("Great Person:     {0}", greatPeople.Name));
@@ -486,15 +512,87 @@ namespace Application
             Console.WriteLine();
             DisplayMessage(String.Format("Year Born:        {0}", greatPeople.BirthYear.ToString()));
             Console.WriteLine();
-            DisplayMessage(String.Format("Cause of death:   {0}", greatPeople.NetWorth.ToString()));
+            DisplayMessage(String.Format("Cause of Death:   {0}", greatPeople.NetWorth.ToString()));
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
+            Console.ResetColor();
             Console.ForegroundColor = System.Drawing.Color.SpringGreen;
             DisplayMessage(String.Format("Description:      {0}", greatPeople.Description));
 
             DisplayMessage("");
         }
+
+        public static void GetDateMinMaxValues(out int minimumDate, out int maximumDate)
+        {
+            minimumDate = 0;
+            maximumDate = 0;
+            ConsoleView.DisplayReset();
+            ConsoleView.DisplayMessage("");
+            Console.ForegroundColor = System.Drawing.Color.CadetBlue;
+            Console.WriteLine(ConsoleUtil.Center("                                Filter Great People By Year Born", 92));
+            System.Console.WriteLine();
+            System.Console.WriteLine("************************************************************************************************************************");
+            ConsoleView.DisplayMessage("");
+            Console.ResetColor();
+            Console.ForegroundColor = System.Drawing.Color.DarkGoldenrod;
+            ConsoleView.DisplayPromptMessage("Enter the minimum date: ");
+            Console.ForegroundColor = System.Drawing.Color.Firebrick;
+            string userResponse = Console.ReadLine();
+            if (userResponse != "")
+                minimumDate = ConsoleUtil.ValidateIntegerResponse("Please enter the minimum date using only numbers:", userResponse);
+            Console.ResetColor();
+            ConsoleView.DisplayMessage("");
+            Console.ForegroundColor = System.Drawing.Color.Gold;
+            ConsoleView.DisplayPromptMessage("Enter the maximum date: ");
+            Console.ForegroundColor = System.Drawing.Color.IndianRed;
+            string userResponse2 = Console.ReadLine();
+            if (userResponse2 != "")
+                Console.ForegroundColor = System.Drawing.Color.Crimson;
+            maximumDate = ConsoleUtil.ValidateIntegerResponse("Please enter the maximum date.", userResponse2);
+            ConsoleView.DisplayMessage("");
+            Console.ForegroundColor = System.Drawing.Color.PaleGoldenrod;
+            ConsoleView.DisplayMessage(string.Format("You have entered {0} as the minimum date and {1} as the maximum date.", (object)minimumDate, (object)maximumDate));
+            ConsoleView.DisplayMessage("");
+            Console.ForegroundColor = System.Drawing.Color.MediumVioletRed;
+            ConsoleView.DisplayContinuePrompt();
+        }
+
+        public static void DisplayQueryResults(IEnumerable<GreatPeople> datesGreatPeople)
+        {
+            Console.ResetColor();
+            DisplayReset();
+            DisplayMessage("");
+            Console.WriteLine(ConsoleUtil.Center("", WINDOW_WIDTH));
+            DisplayMessage("");
+            Console.ForegroundColor = System.Drawing.Color.CadetBlue;
+            System.Console.WriteLine("                                        Here are the Great People you requested: ");
+            System.Console.WriteLine();
+            System.Console.WriteLine("************************************************************************************************************************");
+            Console.ResetColor();
+            DisplayMessage("");
+            StringBuilder columnHeader = new StringBuilder();
+
+            columnHeader.Append("ID".PadRight(18));
+            columnHeader.Append("Name".PadRight(35));
+            columnHeader.Append("Year".PadRight(50));
+
+            Console.ForegroundColor = System.Drawing.Color.Firebrick;
+
+            DisplayMessage(columnHeader.ToString());
+            foreach (GreatPeople greatPeople in datesGreatPeople)
+            {
+                StringBuilder greatPeopleInfo = new StringBuilder();
+                Console.ForegroundColor = System.Drawing.Color.Goldenrod;
+                greatPeopleInfo.Append(greatPeople.ID.ToString().PadRight(18));
+                greatPeopleInfo.Append(greatPeople.Name.PadRight(35));
+                greatPeopleInfo.Append(greatPeople.BirthYear.PadRight(50));
+
+                DisplayMessage(greatPeopleInfo.ToString());
+            }
+        }
+
+
         #endregion
     }
 }

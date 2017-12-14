@@ -17,7 +17,7 @@ namespace Application
             DeleteGreatPerson,
             UpdateGreatPerson,
             QueryBy,
-            SortBy,
+            SortByDateBorn,
             Quit
         }
 

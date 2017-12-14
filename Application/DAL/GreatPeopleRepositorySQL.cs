@@ -10,6 +10,8 @@ namespace Application
 {
     class GreatPeopleRepositorySQL : IGreatPeopleRepository
     {
+
+
         private IEnumerable<GreatPeople> _greatPeople = new List<GreatPeople>();
 
         private IEnumerable<GreatPeople> ReadAllGreatPeople()
@@ -60,10 +62,10 @@ namespace Application
             _greatPeople = ReadAllGreatPeople();
         }
 
-      /// <summary>
-      /// returns list of Great People
-      /// </summary>
-      /// <returns></returns>
+        /// <summary>
+        /// returns list of Great People
+        /// </summary>
+        /// <returns></returns>
         public List<GreatPeople> SelectAll()
         {
             return _greatPeople as List<GreatPeople>;
@@ -72,7 +74,7 @@ namespace Application
         /// <summary>
         /// Returns great person by ID
         /// 
-        
+
         public GreatPeople SelectById(int Id)
         {
             return _greatPeople.Where(sr => sr.ID == Id).FirstOrDefault();
@@ -156,10 +158,10 @@ namespace Application
             // build out SQL command
             var sb = new StringBuilder("UPDATE GreatPeoples SET ");
             sb.Append("Name = '").Append(greatPeople.Name).Append("', ");
-            sb.Append("Known For = '").Append(greatPeople.KnownFor).Append("', ");
+            sb.Append("KnownFor = '").Append(greatPeople.KnownFor).Append("', ");
             sb.Append("Occupation = '").Append(greatPeople.Occupation).Append("', ");
-            sb.Append("Cause of death = '").Append(greatPeople.NetWorth).Append("', ");
-            sb.Append("Year Born = ").Append(greatPeople.BirthYear).Append(" ");
+            sb.Append("NetWorth = '").Append(greatPeople.NetWorth).Append("', ");
+            sb.Append("BirthYear = ").Append(greatPeople.BirthYear).Append(" ");
             //sb.Append("Description = ").Append(greatPeople.Description).Append(" ");
             sb.Append("WHERE ");
             sb.Append("ID = ").Append(greatPeople.ID);
@@ -203,7 +205,13 @@ namespace Application
 
         public void Dispose()
         {
+            _greatPeople = null;
+        }
 
+        public IEnumerable<GreatPeople> QueryByDateBorn(int minimumDate, int maximumDate)
+        {
+            return _greatPeople.Where(sr => int.Parse(sr.BirthYear) >= minimumDate && int.Parse(sr.BirthYear) <= maximumDate);
+            
         }
     }
 }

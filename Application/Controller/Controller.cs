@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Console = Colorful.Console;
 
 namespace Application
 {
@@ -64,8 +65,8 @@ namespace Application
                         UpdateGreatPerson();
                         break;
 
-                    case AppEnum.MenuOptions.SortBy:
-
+                    case AppEnum.MenuOptions.SortByDateBorn:
+                        QueryByDateBorn();
                         break;
 
                     case AppEnum.MenuOptions.QueryBy:
@@ -82,6 +83,27 @@ namespace Application
             }
 
 
+        }
+
+        private static void QueryByDateBorn()
+        {
+            GreatPeopleRepositorySQL greatPeopleRepository = new GreatPeopleRepositorySQL();
+            IEnumerable<GreatPeople> matchingDate = new List<GreatPeople>();
+            int minimumDate;
+            int maximumDate;
+
+            ConsoleView.GetDateMinMaxValues(out minimumDate, out maximumDate);
+
+            using (greatPeopleRepository)
+            {
+                matchingDate = greatPeopleRepository.QueryByDateBorn(minimumDate, maximumDate);
+            }
+
+            ConsoleView.DisplayQueryResults(matchingDate);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.ForegroundColor = System.Drawing.Color.LawnGreen;
+            ConsoleView.DisplayContinuePromptInvisible();
         }
         private static void ListAllGreatPeople()
         {

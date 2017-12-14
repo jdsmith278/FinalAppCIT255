@@ -8,6 +8,6 @@ namespace Application
 {
     public interface IGreatPeopleRepository : IDisposable
     {
-        void Dispose();
+       
     }
 }
